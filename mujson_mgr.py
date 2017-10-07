@@ -125,10 +125,10 @@ class MuMgr(object):
 		return ''.join([random.choice('''ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~-_=+(){}[]^&%$@''') for i in range(8)])
 
 	def add(self, user):
-		up = {'enable': 1, 'u': 0, 'd': 0, 'method': "aes-128-ctr",
-		'protocol': "auth_aes128_md5",
+		up = {'enable': 1, 'u': 0, 'd': 0, 'method': "rc4-md5",
+		'protocol': "auth_sha1_v4",
 		'obfs': "tls1.2_ticket_auth_compatible",
-		'transfer_enable': 9007199254740992}
+		'transfer_enable': 53687091200}
 		up['passwd'] = self.rand_pass()
 		up.update(user)
 
@@ -195,7 +195,7 @@ class MuMgr(object):
 		self.data.load(self.config_path)
 		if not user:
 			for row in self.data.json:
-				print("user [%s] port %s" % (row['user'], row['port']))
+				print("user [%s] port %s trans %.2fG" % (row['user'], row['port'],row['d']/1073741824.00))
 			return
 		for row in self.data.json:
 			match = True
