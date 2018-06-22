@@ -3,6 +3,6 @@ mv bashrc ~/.bashrc
 mv ssr_check.sh ~/ssr_check.sh
 ./initmudbjson.sh
 ./logrun.sh
+source ~/.bashrc
 cd ~
-source .bashrc
 a 10000
